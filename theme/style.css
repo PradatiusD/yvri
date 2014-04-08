@@ -1,5 +1,5 @@
 /*
-	Theme Name: Young Voices
+	Theme Name: Young Voices PD Dev
 	Description: This is the third iteration for YVRI created for the Genesis Framework.
 	Author: Studio Issa
 	Author URI: http://www.studiosissa.com/
@@ -60,7 +60,6 @@
 		- max-width: 1139px
 		- max-width: 1023px
 		- max-width: 767px
-
 */
 
 @font-face {
@@ -1963,6 +1962,40 @@ span.highlight {
 	color: black;
 	background-color: #ffff00;
 	font-weight: 400;
+}
+
+/*
+Homepage
+---------------------------------------------------------------------------------------------------- */
+@media screen and (min-width:727px) and (max-width:1139px) {
+
+	body.home .content .widget-area {
+		width: 48%;
+	}
+}
+
+@media screen and (max-width: 726px) {
+
+	body.home .content .widget-area {
+		width: 100%;
+	}
+}
+
+
+@media screen and (max-width:1139px) {
+
+	.twitter-timeline {
+		width: 100%;
+	}
+
+	.footer-widgets iframe {
+		width: 100% !important;
+		margin: 0;
+	}
+
+	body.home .content .widget-area {
+		margin: 0;
+	}
 }
 
 /*

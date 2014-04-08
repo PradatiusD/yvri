@@ -7,7 +7,7 @@ module.exports = (grunt) ->
 					port: 22
 					authKey: 'key1'
 				src: 'theme'
-				dest: 'wp-content/themes/young-voices-ri'
+				dest: 'wp-content/themes/young-voices-ri-pd'
 
 		watch:
 			styles:
@@ -18,3 +18,4 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks('grunt-contrib-watch')
 	grunt.loadNpmTasks('grunt-sftp-deploy')
 	grunt.registerTask('default', ['watch'])
+	grunt.registerTask('deploy', ['sftp-deploy'])
