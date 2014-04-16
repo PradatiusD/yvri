@@ -1285,11 +1285,20 @@ Site Header
 	
 }
 
+.widget-wrap {
+	.category-press.entry {
+		.entry-title a {
+			display: table;
+		}
+	}
+}
+
 .home-left.widget-area ul li,
 .home-middle.widget-area ul li, 
 .home-bottom-right.widget-area ul li {
 	 list-style-type: none;
 	 margin: 0em 1em;
+	 display: table;
 }
 
 section#featured-post-2,
@@ -1305,6 +1314,7 @@ aside.sidebar h2.entry-title a,
 .home-middle.widget-area ul li a,
 .home-left.widget-area ul li a  {
 	color: #777;
+	display: table-cell;
 }
 
 body.sidebar-content-sidebar .sidebar-secondary .widget.featuredpost h2 a {
@@ -1814,21 +1824,25 @@ Sidebars
 	padding: 0rem;
 }
 
+%bullets {
+	content: "►";
+	font-size: 15px;
+	margin: 0 10px;
+	display: table-cell;
+	padding-right: 7px;
+}
+
 .after-entry li::before,
 .magazine-home .content li::before,
 .sidebar li::before,
 .sidebar section.widget.featuredpost h2.entry-title a::before {
-	content: "►";
-	font-size: 15px;
-	margin: 0 10px;
+	@extend %bullets;
 	color: #777;
 }
 
 .home-right li::before,
 .home-right section.widget.featuredpost h2.entry-title a::before {
-	content: "►";
-	font-size: 15px;
-	margin: 0 10px;
+	@extend %bullets;
 	color: #333;
 }
 
