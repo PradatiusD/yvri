@@ -1,2 +1,4 @@
 node_modules/
 .ftppass
+.sass-cache
+bower_components

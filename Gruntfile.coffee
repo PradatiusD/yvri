@@ -9,12 +9,24 @@ module.exports = (grunt) ->
 				src: 'theme'
 				dest: 'wp-content/themes/young-voices-ri-pd'
 
+		sass:                              # Task
+			dist:                            # Target
+				options:                       # Target options
+					style: 'expanded'
+				files:                         # Dictionary of files
+					'theme/style.css': 'custom.scss',       # 'destination': 'source'
+
+
 		watch:
-			styles:
+			deploy:
 				files: 'theme/*'
 				tasks: ['sftp-deploy']
+			styles:
+				files: 'custom.scss'
+				tasks: ['sass']
 	)
 
+	grunt.loadNpmTasks('grunt-contrib-sass')
 	grunt.loadNpmTasks('grunt-contrib-watch')
 	grunt.loadNpmTasks('grunt-sftp-deploy')
 	grunt.registerTask('default', ['watch'])
