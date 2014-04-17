@@ -66,7 +66,7 @@
 @import "bower_components/bourbon/app/assets/stylesheets/bourbon";
 
 // Vars
-$phoneBrkpt: 640px;
+$phoneBrkpt: 734px;
 
 // Mixins
 @mixin border-radius($val) {
@@ -647,12 +647,26 @@ header.site-header .wrap,
 }
 
 header.site-header .wrap {
-	@include screen(1024px, 1180px) {max-width: 960px;}
-	@include max-screen($phoneBrkpt)      {
-		padding: 0 5% !important;
-		margin-bottom: 1em;
-		background-position: 13% 0 !important;
+
+	@include min-screen($phoneBrkpt+1) {
+		position: relative;
+		min-height: 100px;		
 	}
+
+	.title-area, .header-widget-area {
+		@include min-screen($phoneBrkpt+1) {
+			position: absolute;
+			bottom: 0;
+		}
+	}
+
+	.header-widget-area {
+		@include min-screen($phoneBrkpt+1) {
+			right: 0;
+		}
+	}
+
+	@include screen(1024px, 1180px) {max-width: 960px;}
 }
 
 
@@ -1105,8 +1119,7 @@ Site Header
 }
 
 .site-header .wrap {
-	padding: 40px 0;
-	padding: 4rem 0;
+	padding: 4rem 0 0;
 }
 
 /* Title Area
@@ -1135,13 +1148,6 @@ Site Header
 	text-transform: uppercase;
 }
 
-.site-title a,
-.site-title a:hover {
-	color: #333;
-	position: absolute;
-	left: -1000px;
-}
-
 .site-description {
 	color: #999;
 	font-size: 16px;
@@ -1160,23 +1166,22 @@ Site Header
 	width: 100%;
 }
 
-.header-image .site-description,
-.header-image .site-title a {
+.header-image .site-description {
 	display: block;
 	text-indent: -9999px;
 }
 
 /* Logo, hide text */
 
-.header-image .site-header .wrap {
-	background: url(images/logo.png) no-repeat left;
-	padding: 0;
-}
+// .header-image .site-header .wrap {
+// 	background: url(images/logo.png) no-repeat left;
+// 	padding: 0;
+// }
 
 .header-image .site-title a {
 	float: left;
-	min-height: 164px;
-	width: 100%;
+	position: relative;
+	top: 1px;
 }
 
 /* Widget Area
@@ -1189,7 +1194,6 @@ Site Header
 .site-header .widget-area {
 	float: right;
 	text-align: right;
-	width: 800px;
 }
 
 .header-image .site-header .widget-area {
@@ -1373,6 +1377,18 @@ div.sectiondots {
 Site Navigation
 ---------------------------------------------------------------------------------------------------- */
 
+// Menu button
+#menuButton {
+	@include min-screen($phoneBrkpt+1){display: none;}
+	@include max-screen($phoneBrkpt){display: block;}
+}
+
+// Elements when the menu is expanded
+
+header .header-widget-area {
+	@include max-screen($phoneBrkpt){width: 100%;}
+}
+
 .genesis-nav-menu {
 	clear: both;
 	color: #662d91;
@@ -1380,21 +1396,22 @@ Site Navigation
 	line-height: 1.5;
 	width: 100%;
 
-	@include max-screen($phoneBrkpt) {
-		padding-top: 10em;
+	// Elements when the menu is expanded
+	&.pd-nav-expanded .menu-item {
+		@include max-screen($phoneBrkpt) {
+			display: block;
+		}
 	}
 
 	.menu-item {
 		display: inline-block;
 		text-align: left;
 		@include max-screen($phoneBrkpt) {
-			display: block;
+			display: none;
 			padding-top: 0;
 		}
 
 		&:first-child {
-			@include max-screen($phoneBrkpt){margin-top: 2em;}
-
 			> a {
 				@include max-screen($phoneBrkpt){@include border-radius(4px 4px 0px 0px);}
 			}
@@ -1937,8 +1954,8 @@ Footer Widgets
 	float: left;
 	background: white;
 	@include border-radius(4px);
-	min-height: 405px;
-	@include max-screen($phoneBrkpt){min-height: 0px;}
+	@include min-screen(1025px){min-height: 405px;}
+	@include max-screen(1024px){min-height: 0px;}
 }
 
 section.simple-social-icons {
@@ -1984,7 +2001,13 @@ div.footer-widgets-3 p {
 .footer-widgets .widget {
 	margin-bottom: 24px;
 	margin-bottom: 2.4rem;
-	/* margin: 2rem 3rem; */
+	iframe {
+		@include max-screen(1139px){
+			width: 100% !important;
+			margin: 0;
+		}
+	}
+
 }
 
 .footer-widgets .widget-title {
@@ -2034,30 +2057,16 @@ span.highlight {
 /*
 Homepage
 ---------------------------------------------------------------------------------------------------- */
-@media screen and (min-width:727px) and (max-width:1139px) {
-
-	body.home .content .widget-area {
-		width: 48%;
+body.home {
+	.content .widget-area {
+		@include max-screen(1024px){width: 100%;}
 	}
 }
-
-@media screen and (max-width: 726px) {
-
-	body.home .content .widget-area {
-		width: 100%;
-	}
-}
-
 
 @media screen and (max-width:1139px) {
 
 	.twitter-timeline {
 		width: 100%;
-	}
-
-	.footer-widgets iframe {
-		width: 100% !important;
-		margin: 0;
 	}
 
 	body.home .content .widget-area {
@@ -2082,18 +2091,6 @@ div.sd2-ress-wrapper {
 Media Queries
 ---------------------------------------------------------------------------------------------------- */
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (-moz-min-device-pixel-ratio: 1.5),
-	only screen and (-o-min-device-pixel-ratio: 3/2),
-	only screen and (min-device-pixel-ratio: 1.5) {
-
-	.header-image .site-header .wrap {
-		background: url(images/logo@2x.png) no-repeat left;
-		background-size: 320px 164px;
-	}
-
-}
-
 @media only screen and (max-width: 1139px) {
 
 	.site-inner,
@@ -2107,8 +2104,7 @@ Media Queries
 		width: 740px;
 	}
 
-	.content,
-	.site-header .widget-area {
+	.content {
 		width: 620px;
 	}
 
@@ -2121,8 +2117,7 @@ Media Queries
 	.footer-widgets-1,
 	.footer-widgets-2,
 	.footer-widgets-3,
-	.sidebar-primary,
-	.title-area {
+	.sidebar-primary {
 		width: 300px;
 	}
 	
@@ -2147,23 +2142,20 @@ Media Queries
 	.sidebar-secondary,
 	.sidebar-sidebar-content .content,
 	.sidebar-sidebar-content .content-sidebar-wrap,
-	.site-header .widget-area,
 	.site-inner,
-	.title-area,
 	.wrap {
 		width: 100%;
 	}
 
 	.site-header .wrap {
-		padding: 20px 0;
-		padding: 2rem 0;
+		padding: 2rem 0 0;
 	}
 
 	.header-image .site-header .wrap {
 		background-position: center top;
 	}
 
-	.site-inner {
+	.site-inner, .site-header {
 		padding-left: 5%;
 		padding-right: 5%;
 	}
@@ -2175,13 +2167,10 @@ Media Queries
 	.entry-comments,
 	.entry-footer .entry-meta,
 	.header-image .site-header .widget-area,
-	.sidebar .widget,
-	.site-header {
+	.sidebar .widget {
 		padding: 0;
 	}
 
-	.genesis-nav-menu li,
-	.site-header ul.genesis-nav-menu,
 	.site-header .search-form {
 		float: none;
 		padding-top: 5rem;
