@@ -631,13 +631,6 @@ Structure and Layout
 
 /* Wrapping div for .content and .sidebar-primary */
 
-.content-sidebar-sidebar .content-sidebar-wrap,
-.sidebar-content-sidebar .content-sidebar-wrap,
-.sidebar-sidebar-content .content-sidebar-wrap {
-	/*width: 920px;*/
-	width: 840px;
-}
-
 .site-container .wrapwrap,
 header.site-header .wrap,
 .footer-widgets .wrap {
@@ -698,6 +691,11 @@ header.site-header .wrap {
 	width: 520px;
 }
 
+.sidebar-content-sidebar .content {
+	@include screen(1025px, 1139px){width: 66%;}
+	@include max-screen(1024px){width: 100%;}
+}
+
 .full-width-content .content {
 	width: 100%;
 }
@@ -706,7 +704,8 @@ header.site-header .wrap {
 
 body.sidebar-content-sidebar .sidebar-primary {
 	float: right;
-	width: 300px;
+	@include min-screen(1025px){width:300px;}
+	@include max-screen(1024px){width:100%;}
 }
 
 .sidebar-primary {
@@ -1010,8 +1009,14 @@ body.page.sidebar-content-sidebar .sidebar-secondary li a {
 	font-size: 12px;
 }
 
-body.page.sidebar-content-sidebar aside.sidebar.sidebar-secondary {
-	width: 300px;
+body.page {
+
+	aside.sidebar.sidebar-secondary {
+		
+		@include min-screen(1140px) {width: 300px;}
+		@include max-screen(1139px) {width: 100%;}
+	}
+
 }
 
 
@@ -1826,6 +1831,14 @@ Sidebars
 	color: #666;
 }
 
+.sidebar {
+	li a {display:table-cell;}
+}
+
+.sidebar-primary {
+	.textwidget li {display:table;}
+}
+
 .sidebar ul > li:last-child {
 	margin-bottom: 0;
 }
@@ -2098,20 +2111,8 @@ Media Queries
 		max-width: 960px;
 	}
 
-	.content-sidebar-sidebar .content-sidebar-wrap,
-	.sidebar-content-sidebar .content-sidebar-wrap,
-	.sidebar-sidebar-content .content-sidebar-wrap {
-		width: 740px;
-	}
-
 	.content {
 		width: 620px;
-	}
-
-	.sidebar-content-sidebar .content,
-	.sidebar-sidebar-content .content,
-	.content-sidebar-sidebar .content {
-		width: 400px;
 	}
 
 	.footer-widgets-1,
@@ -2223,21 +2224,6 @@ Media Queries
 	.footer-widgets-1 {
 		margin: 0;
 	}
-	
-	section#featured-post-2,
-	section#text-3,
-	section#twitter_timeline-2 {
-		margin-bottom: 20px;
-		margin: 2rem;
-		padding: 2rem;
-		float: left;
-		width: 40%;
-	}
-	
-	section#text-3 {
-		clear: left;
-	}
-
 }
 
 @media only screen and (max-width: 767px) {
