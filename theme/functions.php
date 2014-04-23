@@ -28,6 +28,35 @@ function prefix_enqueue_awesome() {
 //* Add HTML5 markup structure
 add_theme_support( 'html5' );
 
+// Add Support for Media Queries on IE8 and below
+add_action('wp_head','fix_media_queries_IE8');
+
+function fix_media_queries_IE8(){
+	
+	return '<!--[if lt IE 9]>
+	    		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+			<![endif]-->';
+}
+
+fix_media_queries_IE8();
+
+/** Conditional html element classes for IE */
+// reference from http://genesissnippets.com/conditional-css-classes-for-ie-in-genesis/
+remove_action( 'genesis_doctype', 'genesis_do_doctype' );
+add_action( 'genesis_doctype', 'child_do_doctype' );
+function child_do_doctype() {
+    ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7 ]> <html class="ie6" xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="" xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>> <!--<![endif]-->
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
+    <?php
+}
+
 //* Add viewport meta tag for mobile browsers
 add_theme_support( 'genesis-responsive-viewport' );
 

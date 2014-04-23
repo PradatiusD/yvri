@@ -67,6 +67,8 @@
 
 // Vars
 $phoneBrkpt: 734px;
+$purple: #872685;
+$yellow: #FFD649;
 
 // Mixins
 @mixin border-radius($val) {
@@ -484,6 +486,14 @@ input[type="submit"],
 	border-radius: 4px;
 	margin: 1rem;
 	width: 90%;
+
+	.widget & {
+		@include max-screen(1024px)  {
+			width: 100%;
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
 }
 
 .btn-purple-big:hover,
@@ -1385,8 +1395,25 @@ Site Navigation
 // Menu button
 #menuButton {
 	@include min-screen($phoneBrkpt+1){display: none;}
-	@include max-screen($phoneBrkpt){display: block;}
+	@include max-screen($phoneBrkpt){
+		display: block;
+		position: relative;
+	}
+	
+	.fa-bars {
+		@include min-screen($phoneBrkpt+1){display: none;}
+		@include max-screen($phoneBrkpt)  {display: block}
+		position: absolute;
+		color: #FFF;
+		z-index: 1000;
+		font-size: 1.5em;
+		right: 18px;
+		top: 50%;
+		margin-top: -13px;
+		cursor: pointer;
+	}	
 }
+
 
 // Elements when the menu is expanded
 
@@ -1435,7 +1462,7 @@ header .header-widget-area {
 			padding: 18px 14px;
 			padding: 1.8rem 1.4rem;
 			position: relative;
-			background-color: #872685;
+			background-color: $purple;
 			text-decoration: none;
 			text-transform: uppercase;
 			-moz-box-shadow: 0 0 15px rgba(0,0,0,0.35);
@@ -1470,7 +1497,7 @@ li#menu-item-1130 a:hover {
 }
 
 .genesis-nav-menu .sub-menu .current-menu-item > a {
-	color: #999;
+	color: $yellow;
 }
 
 .genesis-nav-menu > .menu-item > a {
@@ -1478,28 +1505,48 @@ li#menu-item-1130 a:hover {
 }
 
 .genesis-nav-menu .sub-menu {
-	left: -9999px;
-	opacity: 0;
 	position: absolute;
 	-webkit-transition: opacity .4s ease-in-out;
 	-moz-transition:    opacity .4s ease-in-out;
 	-ms-transition:     opacity .4s ease-in-out;
 	-o-transition:      opacity .4s ease-in-out;
 	transition:         opacity .4s ease-in-out;
-	width: 200px;
 	z-index: 99;
-}
 
-.genesis-nav-menu .sub-menu a {
-	background-color: #fff;
-	border: 1px solid #eee;
-	border-top: none;
-	font-size: 16px;
-	font-size: 1.6rem;
-	padding: 16px 20px;
-	padding: 1.6rem 2rem;
-	position: relative;
-	width: 200px;
+	@include min-screen($phoneBrkpt+1){
+		width: 200px;
+		left: -9999px;
+		opacity: 0;
+	}
+	@include max-screen($phoneBrkpt){
+		position: static;
+		opacity: 1;
+		width: 100%;
+	}
+
+	a {
+		background-color: $purple;
+		margin: 0px;
+		border-top: none;
+		font-size: 1.2rem;
+		padding: 1.6rem 2rem;
+		border-radius: 0;
+		position: relative;
+		@include min-screen($phoneBrkpt+1){width: 200px;}
+		@include max-screen($phoneBrkpt){width: 100%;}
+		@include transition(background-color 0.3s ease-out);
+		&:hover {
+			background-color: darken($purple, 10%);
+		}
+	}
+	li:last-child a {
+		@include border-radius(0px 0px 4px 4px);
+	}
+	li:last-child a, li:first-child a {
+		@include max-screen($phoneBrkpt){
+			@include border-radius(0px !important);
+		}
+	}
 }
 
 .genesis-nav-menu .sub-menu .sub-menu {
@@ -1512,7 +1559,7 @@ li#menu-item-1130 a:hover {
 
 .genesis-nav-menu .menu-item:hover > .sub-menu {
 	left: auto;
-	opacity: 1;
+	opacity: 1;		
 }
 
 .genesis-nav-menu > .first > a {
@@ -1549,10 +1596,6 @@ li#menu-item-1130 a:hover {
 
 /* Site Header Navigation
 --------------------------------------------- */
-
-.site-header .sub-menu {
-	border-top: 1px solid #eee;
-}
 
 .site-header .sub-menu .sub-menu {
 	margin-top: -55px;
