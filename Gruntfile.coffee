@@ -8,6 +8,7 @@ module.exports = (grunt) ->
 					authKey: 'key1'
 				src: 'theme'
 				dest: 'wp-content/themes/young-voices-ri-pd'
+				exclusions: ['theme/**/.DS_Store', 'theme/.DS_Store']
 
 		sass:                              # Task
 			dist:                            # Target
