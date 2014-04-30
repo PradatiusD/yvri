@@ -329,11 +329,20 @@ textarea {
 	border-radius: 3px;
 	box-shadow: 1px 1px 3px #eee inset;
 	color: #999;
-	font-size: 14px;
+	font-size: 14px !important;
 	font-size: 1.4rem;
 	padding: 16px;
-	padding: 1.6rem;
+	padding: 1.6rem !important;
 	width: 100%;
+}
+
+.gform_wrapper select {
+ 	font-family: inherit;
+ 	letter-spacing: normal;
+ 	font-size: 16px;
+ 	font-size: 1.6rem;
+ 	padding: 16px;
+ 	padding: 1.6rem;
 }
 
 input:focus,
@@ -1337,8 +1346,10 @@ aside.sidebar h2.entry-title a,
 }
 
 body.sidebar-content-sidebar .sidebar-secondary .widget.featuredpost h2 a {
-	font-size: 14px;
+	font-size: 13px;
 	color: #662d91;
+	margin-bottom: 6px;
+	margin-bottom: 0.6rem;
 }
 
 body.sidebar-content-sidebar .sidebar-secondary .widget.featuredpost h2 a:hover {
@@ -1890,8 +1901,6 @@ Sidebars
 .home-right .widget {
 	background-color: #fff;
 	border-radius: 3px;
-	/*margin-bottom: 40px;
-	margin-bottom: 4rem;*/
 	margin-bottom: 0;
 	padding: 0px;
 	padding: 0rem;
@@ -1910,13 +1919,11 @@ Sidebars
 .sidebar li::before,
 .sidebar section.widget.featuredpost h2.entry-title a::before {
 	@extend %bullets;
-	color: #777;
 }
 
 .home-right li::before,
 .home-right section.widget.featuredpost h2.entry-title a::before {
 	@extend %bullets;
-	color: #333;
 }
 
 .sidebar section.widget.featuredpost h2{
