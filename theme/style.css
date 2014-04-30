@@ -1610,9 +1610,9 @@ html.ie8 .genesis-nav-menu .about-us-nav > a {
 }
 @media screen and (max-width: 734px) {
   .genesis-nav-menu .menu-item:first-child > a {
-    -webkit-border-radius: 4px 4px 0px 0px;
-    -moz-border-radius: 4px 4px 0px 0px;
-    border-radius: 4px 4px 0px 0px;
+    -webkit-border-radius: 0px 4px 0px 0px;
+    -moz-border-radius: 0px 4px 0px 0px;
+    border-radius: 0px 4px 0px 0px;
   }
 }
 @media screen and (max-width: 734px) {

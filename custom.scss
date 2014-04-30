@@ -1536,7 +1536,7 @@ header .header-widget-area {
 
 		&:first-child {
 			> a {
-				@include max-screen($phoneBrkpt){@include border-radius(4px 4px 0px 0px);}
+				@include max-screen($phoneBrkpt){@include border-radius(0px 4px 0px 0px);}
 			}
 		}
 
