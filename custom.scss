@@ -77,6 +77,29 @@ $yellow: #FFD649;
 	border-radius: $val;
 }
 
+@mixin IE($ver) {
+	@if($ver == 9) {
+		html.ie9 & {
+			@content;	
+		}
+	}
+	@if($ver == 8) {
+		html.ie8 & {
+			@content;	
+		}
+	}
+	@if($ver == 7) {
+		html.ie7 & {
+			@content;	
+		}
+	}
+	@if($ver == 5) {
+		html.ie6 & {
+			@content;	
+		}
+	}
+}
+
 
 @font-face {
     font-family: 'Aller';
@@ -746,6 +769,13 @@ body.sidebar-content-sidebar .sidebar-primary {
 
 .content-sidebar-sidebar .sidebar-secondary {
 	float: right;
+	@include IE(8) {
+		width: 100%;
+		.widget {
+			width: 30%;
+			float: left;
+		}
+	}
 }
 
 /* Column Classes
@@ -1170,6 +1200,9 @@ Site Header
 	margin: 0 0 8px;
 	margin: 0 0 0.8rem;
 	text-transform: uppercase;
+	a img {
+		margin-bottom: 0px;
+	}
 }
 
 .site-description {
@@ -1381,6 +1414,9 @@ section#twitter_timeline-3 {
 
 aside.sidebar-secondary.widget-area {
 	width: 300px;
+	@include IE(8) {
+		width: 100%;
+	}
 }
 
 aside.sidebar-secondary.widget-area ul li a {
@@ -1396,6 +1432,18 @@ div.sectiondots {
 	margin: 0 auto;
 	max-width: 1080px;
 	clear: both;
+}
+
+// All news items element
+.more-from-category {
+	&:before {
+		@extend %bullets;
+	}
+	margin: 0rem 2rem;
+	a {
+		display: table-cell;
+		font-weight: bold;
+	}
 }
 
 
@@ -1422,7 +1470,13 @@ Site Navigation
 		top: 50%;
 		margin-top: -13px;
 		cursor: pointer;
-	}	
+	}
+	@include IE(8){
+		display: none !important;
+		.fa-bars {
+			display: none !important;
+		}
+	}
 }
 
 
@@ -1439,10 +1493,35 @@ header .header-widget-area {
 	line-height: 1.5;
 	width: 100%;
 
+	@include IE(7){
+		width: 400px !important;
+		.menu-item {
+			display: inline-block !important;
+			list-style-type: none !important;
+		}
+	}
+
+	@include IE(8){
+		position: relative;
+		top: 16px;
+	}
+
 	// Elements when the menu is expanded
 	&.pd-nav-expanded .menu-item {
 		@include max-screen($phoneBrkpt) {
 			display: block;
+		}
+	}
+
+
+	// To hide about us
+	.about-us-nav > a {
+		@include max-screen($phoneBrkpt){display: none !important;}
+	}
+
+	@include IE(8){
+		.about-us-nav > a {
+			display: none !important;
 		}
 	}
 
@@ -1517,11 +1596,7 @@ li#menu-item-1130 a:hover {
 
 .genesis-nav-menu .sub-menu {
 	position: absolute;
-	-webkit-transition: opacity .4s ease-in-out;
-	-moz-transition:    opacity .4s ease-in-out;
-	-ms-transition:     opacity .4s ease-in-out;
-	-o-transition:      opacity .4s ease-in-out;
-	transition:         opacity .4s ease-in-out;
+	@include transition(opacity 0.4s ease-in-out);
 	z-index: 99;
 
 	@include min-screen($phoneBrkpt+1){
@@ -1535,16 +1610,25 @@ li#menu-item-1130 a:hover {
 		width: 100%;
 	}
 
+	@include IE(8){
+		position: static !important;
+	}
+
 	a {
 		background-color: $purple;
 		margin: 0px;
 		border-top: none;
 		font-size: 1.2rem;
-		padding: 1.6rem 2rem;
 		border-radius: 0;
 		position: relative;
-		@include min-screen($phoneBrkpt+1){width: 200px;}
-		@include max-screen($phoneBrkpt){width: 100%;}
+		@include min-screen($phoneBrkpt+1){
+			width: 200px;
+			padding: 1.6rem 2rem;
+		}
+		@include max-screen($phoneBrkpt){
+			width: 100%;
+			padding: 1.6rem 1.4rem;
+		}
 		@include transition(background-color 0.3s ease-out);
 		&:hover {
 			background-color: darken($purple, 10%);
@@ -1960,6 +2044,10 @@ section.slidedeck2_widget {
 	margin: 2rem 0rem;
 }
 
+.sd2-ress-wrapper {
+ 	@include IE(7) {display: none;}
+}
+
 aside.sidebar,
 aside.home-right {
 	padding: 20px 0px 24px;
@@ -1997,6 +2085,9 @@ Footer Widgets
 .footer-widgets-1,
 .footer-widgets-3 {
 	width: 350px;
+	@include IE(8) {
+		width: 30%;
+	}
 }
 
 .footer-widgets-1 form {
@@ -2029,7 +2120,7 @@ section.simple-social-icons {
 
 .footer-widgets-3 {
 	float: right;
-	-webkit-border-radius: 4px 0px; -moz-border-radius: 4px; border-radius: 4px;
+	@include border-radius(4px 0px);
 	background: #fff;
 }
 

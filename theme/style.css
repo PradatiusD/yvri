@@ -891,6 +891,13 @@ body.sidebar-content-sidebar .sidebar-primary {
 .content-sidebar-sidebar .sidebar-secondary {
   float: right;
 }
+html.ie8 .content-sidebar-sidebar .sidebar-secondary {
+  width: 100%;
+}
+html.ie8 .content-sidebar-sidebar .sidebar-secondary .widget {
+  width: 30%;
+  float: left;
+}
 
 /* Column Classes
 	Link: http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css
@@ -1287,6 +1294,9 @@ Site Header
   margin: 0 0 0.8rem;
   text-transform: uppercase;
 }
+.site-title a img {
+  margin-bottom: 0px;
+}
 
 .site-description {
   color: #999;
@@ -1483,6 +1493,9 @@ section#twitter_timeline-3 {
 aside.sidebar-secondary.widget-area {
   width: 300px;
 }
+html.ie8 aside.sidebar-secondary.widget-area {
+  width: 100%;
+}
 
 aside.sidebar-secondary.widget-area ul li a {
   font-size: 14px;
@@ -1496,6 +1509,14 @@ div.sectiondots {
   margin: 0 auto;
   max-width: 1080px;
   clear: both;
+}
+
+.more-from-category {
+  margin: 0rem 2rem;
+}
+.more-from-category a {
+  display: table-cell;
+  font-weight: bold;
 }
 
 /*
@@ -1532,6 +1553,12 @@ Site Navigation
     display: block;
   }
 }
+html.ie8 #menuButton {
+  display: none !important;
+}
+html.ie8 #menuButton .fa-bars {
+  display: none !important;
+}
 
 @media screen and (max-width: 734px) {
   header .header-widget-area {
@@ -1546,10 +1573,29 @@ Site Navigation
   line-height: 1.5;
   width: 100%;
 }
+html.ie7 .genesis-nav-menu {
+  width: 400px !important;
+}
+html.ie7 .genesis-nav-menu .menu-item {
+  display: inline-block !important;
+  list-style-type: none !important;
+}
+html.ie8 .genesis-nav-menu {
+  position: relative;
+  top: 16px;
+}
 @media screen and (max-width: 734px) {
   .genesis-nav-menu.pd-nav-expanded .menu-item {
     display: block;
   }
+}
+@media screen and (max-width: 734px) {
+  .genesis-nav-menu .about-us-nav > a {
+    display: none !important;
+  }
+}
+html.ie8 .genesis-nav-menu .about-us-nav > a {
+  display: none !important;
 }
 .genesis-nav-menu .menu-item {
   display: inline-block;
@@ -1631,11 +1677,9 @@ li#menu-item-1130 a:hover {
 
 .genesis-nav-menu .sub-menu {
   position: absolute;
-  -webkit-transition: opacity .4s ease-in-out;
-  -moz-transition: opacity .4s ease-in-out;
-  -ms-transition: opacity .4s ease-in-out;
-  -o-transition: opacity .4s ease-in-out;
-  transition: opacity .4s ease-in-out;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
   z-index: 99;
 }
 @media screen and (min-width: 735px) {
@@ -1652,12 +1696,14 @@ li#menu-item-1130 a:hover {
     width: 100%;
   }
 }
+html.ie8 .genesis-nav-menu .sub-menu {
+  position: static !important;
+}
 .genesis-nav-menu .sub-menu a {
   background-color: #872685;
   margin: 0px;
   border-top: none;
   font-size: 1.2rem;
-  padding: 1.6rem 2rem;
   border-radius: 0;
   position: relative;
   -webkit-transition: background-color 0.3s ease-out;
@@ -1667,11 +1713,13 @@ li#menu-item-1130 a:hover {
 @media screen and (min-width: 735px) {
   .genesis-nav-menu .sub-menu a {
     width: 200px;
+    padding: 1.6rem 2rem;
   }
 }
 @media screen and (max-width: 734px) {
   .genesis-nav-menu .sub-menu a {
     width: 100%;
+    padding: 1.6rem 1.4rem;
   }
 }
 .genesis-nav-menu .sub-menu a:hover {
@@ -2023,7 +2071,7 @@ Sidebars
   padding: 0rem;
 }
 
-.after-entry li::before,
+.more-from-category:before, .after-entry li::before,
 .magazine-home .content li::before,
 .sidebar li::before,
 .sidebar section.widget.featuredpost h2.entry-title a::before, .home-right li::before,
@@ -2064,6 +2112,10 @@ section.slidedeck2_widget {
   margin: 2rem 0rem;
 }
 
+html.ie7 .sd2-ress-wrapper {
+  display: none;
+}
+
 aside.sidebar,
 aside.home-right {
   padding: 20px 0px 24px;
@@ -2102,6 +2154,10 @@ Footer Widgets
 .footer-widgets-1,
 .footer-widgets-3 {
   width: 350px;
+}
+html.ie8 .footer-widgets-1, html.ie8
+.footer-widgets-3 {
+  width: 30%;
 }
 
 .footer-widgets-1 form {
@@ -2147,8 +2203,8 @@ section.simple-social-icons {
 .footer-widgets-3 {
   float: right;
   -webkit-border-radius: 4px 0px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  -moz-border-radius: 4px 0px;
+  border-radius: 4px 0px;
   background: #fff;
 }
 
