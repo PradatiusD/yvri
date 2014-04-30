@@ -1295,7 +1295,7 @@ Site Header
   text-transform: uppercase;
 }
 .site-title a img {
-  margin-bottom: 0px;
+  margin-bottom: 1px;
 }
 
 .site-description {
