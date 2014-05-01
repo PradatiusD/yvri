@@ -692,7 +692,17 @@ header.site-header .wrap {
 		@include min-screen($phoneBrkpt+1) {
 			position: absolute;
 			bottom: 0;
+			padding-bottom: 0;
 		}
+	}
+
+	.title-area {
+		height: 92px;
+	}
+
+	.site-title {
+		height: 76px;
+		margin-bottom: 0;
 	}
 
 	.header-widget-area {
@@ -1386,6 +1396,15 @@ body.sidebar-content-sidebar .sidebar-secondary .widget.featuredpost h2 a {
 	margin-bottom: 0.6rem;
 }
 
+.sidebar .widget.featured-content.featuredpost {
+
+	article, .more-from-category {
+		margin-left: 0.6em;
+	}
+
+}
+
+
 body.sidebar-content-sidebar .sidebar-secondary .widget.featuredpost h2 a:hover {
 	color: black;
 }
@@ -1996,6 +2015,7 @@ Sidebars
 	font-size: 15px;
 	margin: 0 10px;
 	display: table-cell;
+	color: #777;
 	padding-right: 7px;
 }
 
